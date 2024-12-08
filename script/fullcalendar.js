@@ -1,3 +1,5 @@
+let lastDt = new Date();
+
 function customSource(date) {
     const filters = $('input[name="filter"]:checked')
         .map((_, el) => $(el).val()).get().join(';');
@@ -22,6 +24,7 @@ function customSource(date) {
             const calendar = $('#calendar');
             calendar.fullCalendar('removeEvents');
             calendar.fullCalendar('addEventSource', events);
+			lastDt = date;
         },
         error: (xhr, status, error) => {
             console.error('Failed to fetch events:', error);
@@ -267,4 +270,6 @@ $(document).ready(function () {
 
         events: [],
     });
+
+	$('input[name="filter"]').on('change', () => customSource(lastDt));
 });
