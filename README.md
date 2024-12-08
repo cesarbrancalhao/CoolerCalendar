@@ -23,7 +23,16 @@ Done! Good to go.
 
 ## <a name="start">How to use</a>
 
-After the instalation is complete you will want to integrate the Ajax calls to your own endpoints.<br>
+To use the API example I provided;
+Open the terminal on [server](./server/) folder.
+Run:
+
+```sh
+npm i
+node run server.js
+```
+
+You may want to integrate the Ajax calls to your own endpoints later.
 
 ## <a name="new">What's new</a>
 
