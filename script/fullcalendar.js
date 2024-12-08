@@ -1,34 +1,40 @@
-function getPlaceholders(){
-	if (typeof placeholders === 'undefined') return [];
+function customSource(date) {
+    const filters = $('input[name="filter"]:checked')
+        .map((_, el) => $(el).val()).get().join(';');
 
-	return placeholders;
+    const params = {
+        date: date.$format('d/m/Y H:i:s'),
+        filter: filters
+    };
+
+    $.ajax({
+        dataType: 'json',
+        type: 'GET',
+        url: "http://localhost:3000/events",
+        data: params,
+        success: res => {
+            const events = res.map(ev => ({
+                ...ev,
+                start: new Date(ev.start),
+                end: new Date(ev.end)
+            }));
+            
+            const calendar = $('#calendar');
+            calendar.fullCalendar('removeEvents');
+            calendar.fullCalendar('addEventSource', events);
+        },
+        error: (xhr, status, error) => {
+            console.error('Failed to fetch events:', error);
+        }
+    });
 }
 
-function customSource(date) {
-	const params = {
-		date: date.$format('d/m/Y H:i:s'),
-	};
-	$.ajax({
-		dataType: 'json',
-		type: 'GET',
-		url: "your_url/event",
-		data: params,
-		success: res => {
-			$('#calendar').fullCalendar('removeEvents');
-			res.map(ev => {
-				ev.start = new Date(ev.start);
-				ev.end = new Date(ev.end);
-				$('#calendar').fullCalendar('renderEvent', ev, true);
-			})},
-	});
-};
-
-const modalForm = (start, end, allDay, title = '', description = '', situacao = 'N', id = '', save = true) => {
+const modalForm = (start, end, allDay, title = '', description = '', situacao = 'A', id = '', save = true) => {
 	const situacoes = {
-		N: 'Selecione',
 		A: 'Agendado',
 		C: 'Cancelado',
         E: 'Encerrado',
+        N: 'Não confirmado',
 	};
 
 	const modalHtml = `
@@ -103,7 +109,7 @@ const modalForm = (start, end, allDay, title = '', description = '', situacao = 
 			</div>
 		`;
 
-	const validForm = (title, situacao, start, end) => title && situacao !== 'N' && start && end;
+	const validForm = (title, situacao, start, end) => title && situacao && start && end;
 	const validDate = (start, end) => start.getTime() < end.getTime();
 
 	$('body').append(modalHtml);
@@ -147,7 +153,7 @@ const modalForm = (start, end, allDay, title = '', description = '', situacao = 
 			$.ajax({
 				dataType: 'json',
 				type: 'POST',
-				url: "your_url/event",
+				url: "http://localhost:3000/events",
 				contentType: 'application/json',
 				data: JSON.stringify(params),
 				success: ev => {
@@ -171,7 +177,7 @@ const modalForm = (start, end, allDay, title = '', description = '', situacao = 
 			$.ajax({
 				dataType: 'json',
 				type: 'PUT',
-				url: "your_url/event/" + id,
+				url: "http://localhost:3000/events/" + id,
 				contentType: 'application/json',
 				data: JSON.stringify(params),
 				success: ev => {
@@ -195,7 +201,7 @@ const modalForm = (start, end, allDay, title = '', description = '', situacao = 
 			$.ajax({
 				dataType: 'json',
 				type: 'DELETE',
-				url: "your_url/event/" + id,
+				url: "http://localhost:3000/events/" + id,
 				success: () => {
 					$('#calendar').fullCalendar('removeEvents', id);
 				},
@@ -259,6 +265,6 @@ $(document).ready(function () {
             if ($('#drop-remove').is(':checked')) $(this).remove();
         },
 
-        events: getPlaceholders(),
+        events: [],
     });
 });

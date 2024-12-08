@@ -23,8 +23,16 @@ Done! Good to go.
 
 ## <a name="start">How to use</a>
 
-After the instalation is complete you will want to integrate the Ajax calls to your own endpoints and delete placeholders.js.<br>
-Then if you're not offline, just open index.html.
+To use the API example I provided;
+Open the terminal on [server](./server/) folder.
+Run:
+
+```sh
+npm i
+node run server.js
+```
+
+You may want to integrate the Ajax calls to your own endpoints later.
 
 ## <a name="new">What's new</a>
 
@@ -32,15 +40,16 @@ From FullCalendar 1.6.4:
 
 - Added forms to properly create and edit events.
 - Added a help button explaining how events work.
-- Changed style and fields used on the events.
-- Patched problems with the events not being rendered on the correct places.
-- Patched resizing and responsivity bugs.
-- Removed draggables (as it was unwanted on this version).
+- Added new event types.
+- Changed event style and properties.
+- Fixed problems with the events not being rendered on the correct places.
+- Fixed resizing and responsivity bugs.
+- Removed draggables (unwanted on this version).
 
 Future changes:
 
-- Add portuguese and spanish options.
-- Add more types of events (situations) and filters for them.
+- Add language options.
+- Add example backend.
 
 ## <a name="stacks">Stacks and libraries</a>
 
