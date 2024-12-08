@@ -21,6 +21,23 @@
                     </button>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="btn-group" role="group">
+                        <input type="checkbox" class="btn-check" name="filter" id="filterA" value="A" checked>
+                        <label class="btn btn-outline-filter" for="filterA">Agendado</label>
+            
+                        <input type="checkbox" class="btn-check" name="filter" id="filterC" value="C" checked>
+                        <label class="btn btn-outline-filter" for="filterC">Cancelado</label>
+            
+                        <input type="checkbox" class="btn-check" name="filter" id="filterE" value="E">
+                        <label class="btn btn-outline-filter" for="filterE">Encerrado</label>
+
+                        <input type="checkbox" class="btn-check" name="filter" id="filterD" value="N">
+                        <label class="btn btn-outline-filter" for="filterD">Não confirmado</label>
+                    </div>
+                </div>
+            </div>
             <div id='wrap'>
                 <div id='calendar-container'>
                     <div id='calendar'></div>
@@ -29,7 +46,6 @@
         </div>
     </section>
     <script type="text/javascript" src="./script/custom.js"></script>
-    <script type="text/javascript" src="./script/placeholders.js"></script>
     <script type="text/javascript" src="./script/index.js"></script>
     <script type="text/javascript" src="./script/fullcalendar.js"></script>
     <script type="text/javascript" src="./script/help.js"></script>

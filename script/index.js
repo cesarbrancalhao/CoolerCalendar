@@ -3508,6 +3508,7 @@
 				A: "primarybg",
 				C: "dangerbg",
 				E: "defaultbg",
+				N: "warningbg",
 			};
 			var html = "<";
 			var url = event.url;
@@ -4411,6 +4412,7 @@
 				A: "primarybg",
 				C: "dangerbg",
 				E: "defaultbg",
+				N: "warningbg",
 			};
 			var html = '';
 			var isRTL = opt('isRTL');

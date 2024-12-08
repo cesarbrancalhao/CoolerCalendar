@@ -654,3 +654,37 @@ table.fc-header{
 .defaultbg{
 	background-color: var(--default) !important;
 }
+
+/* --- buttons --- */
+
+.btn-check {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+
+.btn-outline-filter {
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    background-color: transparent;
+    margin-right: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-outline-filter:hover,
+.btn-check:checked + .btn-outline-filter {
+    color: var(--default);
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+	margin: 2rem 0;
+	justify-content: center;
+}
